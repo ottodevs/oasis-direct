@@ -28,7 +28,10 @@ class SetDetailsBasic extends Component {
             { this.token(this.props.to) }
             <input type="number" disabled="true" value={ this.props.amountBuy } />
           </div>
-          <input type="submit" value="Continue" />
+          <button
+            type="submit"
+            className='pure-button pure-button-primary'
+          >Continue</button>
         </form>
       </div>
     )

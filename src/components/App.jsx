@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import NoConnection from './NoConnection';
 import web3, { initWeb3 } from  '../web3';
 import ReactNotify from '../notify';
@@ -9,19 +10,25 @@ import SetAssets from './SetAssets';
 import SetDetailsBasic from './SetDetailsBasic';
 import TradeBasic from './TradeBasic';
 
-const settings = require('../settings');
 
+const settings = require('../settings');
 const dstoken = require('../abi/dstoken');
 const dsethtoken = require('../abi/dsethtoken');
 const dsvalue = require('../abi/dsvalue');
 const dsproxyfactory = require('../abi/dsproxyfactory');
 const dsproxy = require('../abi/dsproxy');
-
 const proxyActions = require('../proxyActions');
 
+
+const Card = ({ children }) => (
+  <div style={{ padding: '10px', margin: '10px' }} className='card'>
+    {children}
+  </div>
+);
+
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const initialState = this.getInitialState();
     this.state = {
       ...initialState,
@@ -411,34 +418,34 @@ class App extends Component {
   //
 
   renderMain = () => {
-    return (
-      this.state.system.step === 1
-      ? 
-        <SetAssets type={ this.state.system.type } changeType={ this.changeType } goToDetailsBasicStep={ this.goToDetailsBasicStep } />
-      :
-        this.state.system.step === 2
-        ?
-          this.state.system.type === 'basic'
-          ?
-            <SetDetailsBasic from={ this.state.system.from } to={ this.state.system.to } calculateBuyAmount={ this.calculateBuyAmount } amountBuy = { this.state.system.amountBuy } />
-          :
-            ''    
-        :
-          this.state.system.step === 3
-          ?
-            this.state.system.type === 'basic'
-            ?
-              <TradeBasic />
-            :
-              ''
-          :
-            ''
-    );
+    switch (this.state.system.step) {
+      case 1:
+        return (
+          <SetAssets
+            type={ this.state.system.type }
+            changeType={ this.changeType }
+            goToDetailsBasicStep={ this.goToDetailsBasicStep } />
+        );
+      case 2:
+        return (
+          <SetDetailsBasic
+            from={ this.state.system.from }
+            to={ this.state.system.to }
+            calculateBuyAmount={ this.calculateBuyAmount }
+            amountBuy = { this.state.system.amountBuy }
+          />
+        );
+      case 3:
+        return (
+          <TradeBasic />
+        );
+      default:
+    }
   }
 
   render() {
     return (
-      this.state.network.isConnected ? this.renderMain() : <NoConnection />
+      this.state.network.isConnected ? <Card>{this.renderMain()}</Card>: <NoConnection />
     );
   }
 }

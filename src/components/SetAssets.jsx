@@ -9,12 +9,14 @@ class SetAssets extends Component {
 
   tokenPicker = (name) => {
     return(
-      <select ref={ (input) => this[name] = input }>
-        {/* <option value="eth">Ether</option> */}
-        <option value="weth">WEther</option>
-        <option value="mkr">Maker</option>
-        <option value="sai">Sai</option>
-      </select>
+      <div className='select'>
+        <select ref={ (input) => this[name] = input }>
+          {/* <option value="eth">Ether</option> */}
+          <option value="weth">WEther</option>
+          <option value="mkr">Maker</option>
+          <option value="sai">Sai</option>
+        </select>
+      </div>
     )
   }
 
@@ -32,10 +34,12 @@ class SetAssets extends Component {
         <h2>Choose which Asssets to trade</h2>
         <form onSubmit={ this.nextStep }>
           <h3>Select Type of Trade</h3>
-          <select ref={ (input) => this.type = input } onChange={ this.changeType }>
-            <option value="basic">Basic</option>
-            <option value="margin">Margin</option>
-          </select>
+          <div className='select'>
+            <select ref={ (input) => this.type = input } onChange={ this.changeType }>
+              <option value="basic">Basic</option>
+              <option value="margin">Margin</option>
+            </select>
+          </div>
           {
             this.props.type === 'basic'
             ?
@@ -47,7 +51,9 @@ class SetAssets extends Component {
               <div>
               </div>
           }
-          <input type="submit" value="Continue" />
+          <button
+            type="submit"
+          >Continue</button>
         </form>
       </div>
     )
