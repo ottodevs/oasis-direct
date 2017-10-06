@@ -6,8 +6,7 @@ import classNames from 'classnames/bind';
 import styles from './TradeDetails.scss';
 import TradeToken from '../components/TradeToken';
 import StartTransactionButton from './StartTransactionButton';
-import DepositAmountInput from './DepositAmountInput';
-import ReceiveAmountInput from './ReceiveAmountInput';
+import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
 
 const cx = classNames.bind(styles);
@@ -21,39 +20,39 @@ class TradeDetails extends PureComponent {
       base: true,
     });
 
-    const { market, price, fee } = this.props;
+    const {market, price, fee} = this.props;
 
     return (
-        <div className={className}>
-          <section>
-            <h3>Enter Order Details</h3>
-          </section>
-          <section>
-            <form>
+      <div className={className}>
+        <section>
+          <h3>Enter Order Details</h3>
+        </section>
+        <section>
+          <form>
+            <div>
+              <TradeToken controlName={'from'} token="ETH"/>
+              <AmountInput name="deposit" placeHolder="Deposit Amount"/>
+            </div>
+            <div>
+              <Pictogram/>
+            </div>
+            <div>
               <div>
-                <TradeToken controlName={'from'}/>
-                <Pictogram/>
-                <TradeToken controlName={'to'}/>
+                <TradeToken controlName={'to'} token="MKR"/>
+                <AmountInput name="receive" placeHolder="Receive Amount"/>
               </div>
-              <div>
-                <div>
-                  <DepositAmountInput/>
-                </div>
-                <div>
-                  <ReceiveAmountInput/>
-                </div>
-              </div>
-              <div>
-                <span>{market}</span>
-                <span>{price}</span>
-                <span>{fee}</span>
-              </div>
-              <div>
-                <StartTransactionButton/>
-              </div>
-            </form>
-          </section>
-        </div>
+            </div>
+            <div>
+              <span>{market}</span>
+              <span>{price}</span>
+              <span>{fee}</span>
+            </div>
+            <div>
+              <StartTransactionButton/>
+            </div>
+          </form>
+        </section>
+      </div>
     );
   }
 }

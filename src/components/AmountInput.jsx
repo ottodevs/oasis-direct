@@ -1,5 +1,5 @@
-import React, { PureComponent } from 'react';
-import { PropTypes } from 'prop-types';
+import React, {PureComponent} from 'react';
+import {PropTypes} from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames/bind';
 
@@ -8,19 +8,20 @@ import styles from './AmountInput.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = PropTypes && {
-  children: PropTypes.node
-};
+    name: PropTypes.string.isRequired,
+    placeHolder: PropTypes.string
+  };
 const defaultProps = {};
-
 
 class AmountInput extends PureComponent {
   render() {
     const className = cx({
       base: true
     });
+    const {name, placeHolder} = this.props;
     return (
       <div className={className}>
-        {this.props.children}
+        <input name={name} placeholder={placeHolder}/>
       </div>
     );
   }

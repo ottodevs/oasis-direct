@@ -19,11 +19,11 @@ class TradeToken extends PureComponent {
     const className = cx({
       base: true
     });
-    const { controlName } = this.props;
+    const { controlName, token } = this.props;
     return (
       <div className={className}>
         <input name={controlName} type='hidden'/>
-        <Pictogram/>
+        <Pictogram symbol={token}/>
       </div>
     );
   }
