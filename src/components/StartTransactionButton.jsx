@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import styles from './StartTransactionButton.css';
+import styles from './StartTransactionButton.scss';
 
 const propTypes = PropTypes && {
   disabled: PropTypes.bool

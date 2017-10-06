@@ -20,6 +20,9 @@ class TradeDetails extends PureComponent {
     const className = cx({
       base: true,
     });
+
+    const { market, price, fee } = this.props;
+
     return (
         <div className={className}>
           <section>
@@ -40,7 +43,11 @@ class TradeDetails extends PureComponent {
                   <ReceiveAmountInput/>
                 </div>
               </div>
-
+              <div>
+                <span>{market}</span>
+                <span>{price}</span>
+                <span>{fee}</span>
+              </div>
               <div>
                 <StartTransactionButton/>
               </div>

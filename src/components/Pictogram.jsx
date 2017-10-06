@@ -9,7 +9,15 @@ const cx = classNames.bind(styles);
 
 const propTypes = PropTypes && {
   size: PropTypes.number,
-  symbol: PropTypes.oneOf(['ether', 'maker', 'augur', 'golem', 'digix', 'SAI','trade'])
+  symbol: PropTypes.oneOf([
+    'ether',
+    'maker',
+    'augur',
+    'golem',
+    'digix',
+    'SAI',
+    'trade'
+  ])
 };
 const defaultProps = {
 };
