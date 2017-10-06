@@ -6,7 +6,7 @@ import Immutable from 'immutable';
 import reducers from './reducers';
 
 
-function initStore(initialState = Immutable.Map()) {
+function initStore(defaultState = Immutable.Map()) {
   let middleware = applyMiddleware(thunk, promiseMiddleware());
   if (window.devToolsExtension) {
     middleware = compose(
@@ -16,7 +16,7 @@ function initStore(initialState = Immutable.Map()) {
   }
 
   const store = createStore(
-    reducers, initialState, middleware
+    reducers, defaultState, middleware
   );
 
   if (module.hot) {

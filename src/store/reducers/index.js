@@ -2,14 +2,18 @@ import {
   combineReducers,
 } from 'redux-immutable';
 
-import setAssetsStep from './setAssetsStep';
-import setDetailsStep from './setDetailsStep';
-import tradingStep from './tradingStep';
 import system from './system';
+import tokens from './tokens';
+import transactions from "./transactions";
+import network from './network';
+import params from './params';
+
 
 export default combineReducers({
-  ['setAssetsStep']: setAssetsStep.reducer,
-  ['setDetailStep']: setDetailsStep.reducer,
-  ['tradingStep']:   tradingStep.reducer,
-  ['system']:        system.reducer
+  ['system']:        system.reducer,
+  ['tokens']:        tokens.reducer,
+  ['network']:       network.reducer,
+  ['transaction']:   transactions.reducer,
+  ['params']:        params.reducer
+
 })
