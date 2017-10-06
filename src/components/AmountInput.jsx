@@ -3,28 +3,30 @@ import { PropTypes } from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames/bind';
 
-import styles from './ReceiveAmountInput.scss';
+import styles from './AmountInput.scss';
 
 const cx = classNames.bind(styles);
 
-const propTypes = PropTypes && {};
+const propTypes = PropTypes && {
+  children: PropTypes.node
+};
 const defaultProps = {};
 
 
-class ReceiveAmountInput extends PureComponent {
+class AmountInput extends PureComponent {
   render() {
     const className = cx({
       base: true
     });
     return (
       <div className={className}>
-        <input placeholder={'Receive amount'} name={'receiveAmount'}/>
+        {this.props.children}
       </div>
     );
   }
 }
 
-ReceiveAmountInput.displayName = 'ReceiveAmountInput';
-ReceiveAmountInput.propTypes = propTypes;
-ReceiveAmountInput.defaultProps = defaultProps;
-export default ReceiveAmountInput;
+AmountInput.displayName = 'AmountInput';
+AmountInput.propTypes = propTypes;
+AmountInput.defaultProps = defaultProps;
+export default AmountInput;

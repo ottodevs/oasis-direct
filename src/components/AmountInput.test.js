@@ -2,10 +2,10 @@
 /* eslint-disable import/first */
 import React from 'react';
 
-import ReceiveAmountInput from './ReceiveAmountInput';
+import AmountInput from './AmountInput';
 
 
-describe('(Component) ReceiveAmountInput', () => {
+describe('(Component) AmountInput', () => {
   it('should render', () => {
     const props = {
       children: (
@@ -13,7 +13,7 @@ describe('(Component) ReceiveAmountInput', () => {
       )
     };
     const wrapper = shallow(
-      <ReceiveAmountInput {...props}/>
+      <AmountInput {...props}/>
     );
 
     expect(wrapper).toMatchSnapshot();
