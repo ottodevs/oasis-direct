@@ -1,28 +1,39 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames/bind';
 
-import styles from './TradeToken.scss';
+import './TradeToken.scss';
 import Pictogram from "./Pictogram";
 
-const cx = classNames.bind(styles);
 
 const propTypes = PropTypes && {
-  controlName: PropTypes.string.isRequired
+  controlName: PropTypes.string,
+  onToggleTokenPicker: PropTypes.func.isRequired
 };
 const defaultProps = {};
 
 
 class TradeToken extends PureComponent {
-  render() {
-    const className = cx({
-      base: true
-    });
+
+  onClick() {
     const { controlName, token } = this.props;
+    this.props.onToggleTokenPicker(controlName, token);
+  }
+
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  formControl() {
+    const { controlName } = this.props;
+    return controlName ? (<input name={controlName} type='hidden'/>) : null;
+  }
+  render() {
+    const { token } = this.props;
     return (
-      <div className={className}>
-        <input name={controlName} type='hidden'/>
+      <div onClick={this.onClick} className={'TradeToken'}>
+        {this.formControl()}
         <Pictogram symbol={token}/>
       </div>
     );

@@ -1,11 +1,9 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames/bind';
 
-import styles from './TradeDetailsInfoBox.scss';
+import './TradeDetailsInfoBox.scss';
 
-const cx = classNames.bind(styles);
 
 const propTypes = PropTypes && {
   children: PropTypes.node
@@ -15,12 +13,14 @@ const defaultProps = {};
 
 class TradeDetailsInfoBox extends PureComponent {
   render() {
-    const className = cx({
-      base: true
-    });
-    const { market, price, fee, token } = this.props;
+    const {
+      market,
+      price,
+      fee,
+      token
+    } = this.props;
     return (
-      <div className={className}>
+      <div className={'TradeDetailsInfoBox'}>
         <span>
           <span className='market'>{market}</span>
         </span>

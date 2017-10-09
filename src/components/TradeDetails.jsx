@@ -1,58 +1,81 @@
 import React, {PureComponent} from 'react';
 import {PropTypes} from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames/bind';
 
-import styles from './TradeDetails.scss';
+import './TradeDetails.scss';
 import TradeToken from '../components/TradeToken';
-import StartTransactionButton from './StartTransactionButton';
+import Button from './Button';
 import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
+import TradeDetailsInfoBox from './TradeDetailsInfoBox';
+import TokenPickerContainer from './../containers/TokenPicker';
 
-const cx = classNames.bind(styles);
 
-const propTypes = PropTypes && {};
+const propTypes = PropTypes && {
+  onAmountBuyChange: PropTypes.func.isRequired,
+  onAmountSellChange: PropTypes.func.isRequired,
+  onStartTransaction: PropTypes.func.isRequired,
+  onToggleTokenPicker: PropTypes.func.isRequired,
+};
+
 const defaultProps = {};
 
 class TradeDetails extends PureComponent {
   render() {
-    const className = cx({
-      base: true,
-    });
-
-    const {market, price, fee} = this.props;
+    const {
+      onAmountBuyChange,
+      onAmountSellChange,
+      onStartTransaction,
+      onToggleTokenPicker,
+      disabled,
+    } = this.props;
 
     return (
-      <div className={className}>
-        <section>
-          <h3>Enter Order Details</h3>
-        </section>
-        <section>
-          <form>
-            <div>
-              <TradeToken controlName={'from'} token="ETH"/>
-              <AmountInput name="deposit" placeHolder="Deposit Amount"/>
-            </div>
-            <div>
-              <Pictogram/>
-            </div>
-            <div>
+        <div className={'TradeDetails'}>
+          <TokenPickerContainer/>
+          <section>
+            <h3>Enter Order Details</h3>
+          </section>
+          <section>
+            <form>
               <div>
-                <TradeToken controlName={'to'} token="MKR"/>
-                <AmountInput name="receive" placeHolder="Receive Amount"/>
+                <TradeToken
+                    onToggleTokenPicker={onToggleTokenPicker}
+                    controlName={'deposit'}
+                    token="ETH"
+                />
+                <AmountInput
+                    onChange={onAmountSellChange}
+                    name="deposit"
+                    placeHolder="Deposit Amount"
+                />
               </div>
-            </div>
-            <div>
-              <span>{market}</span>
-              <span>{price}</span>
-              <span>{fee}</span>
-            </div>
-            <div>
-              <StartTransactionButton/>
-            </div>
-          </form>
-        </section>
-      </div>
+              <div>
+                <Pictogram symbol={'trade'}/>
+              </div>
+              <div>
+                <TradeToken
+                    onToggleTokenPicker={onToggleTokenPicker}
+                    controlName={'buy'} token="MKR"/>
+                <AmountInput
+                    onChange={onAmountBuyChange}
+                    name="buy"
+                    placeHolder="Receive Amount"
+                />
+              </div>
+              <div>
+                <TradeDetailsInfoBox/>
+              </div>
+              <div>
+                <Button
+                    disabled={disabled}
+                    onClick={onStartTransaction}
+                    text={'Start transaction'}
+                />
+              </div>
+            </form>
+          </section>
+        </div>
     );
   }
 }

@@ -2,10 +2,10 @@
 /* eslint-disable import/first */
 import React from 'react';
 
-import TokenPicker from './TokenPicker';
+import CloseButton from './CloseButton';
 
 
-describe('(Component) TokenPicker', () => {
+describe('(Component) CloseButton', () => {
   it('should render', () => {
     const props = {
       children: (
@@ -13,7 +13,7 @@ describe('(Component) TokenPicker', () => {
       )
     };
     const wrapper = shallow(
-      <TokenPicker {...props}/>
+      <CloseButton {...props}/>
     );
 
     expect(wrapper).toMatchSnapshot();

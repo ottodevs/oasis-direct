@@ -1,27 +1,31 @@
 import React, {PureComponent} from 'react';
 import {PropTypes} from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames/bind';
 
-import styles from './AmountInput.scss';
+import './AmountInput.scss';
 
-const cx = classNames.bind(styles);
 
 const propTypes = PropTypes && {
     name: PropTypes.string.isRequired,
-    placeHolder: PropTypes.string
+    placeHolder: PropTypes.string,
+    onChange: PropTypes.func.isRequired
   };
 const defaultProps = {};
 
 class AmountInput extends PureComponent {
   render() {
-    const className = cx({
-      base: true
-    });
-    const {name, placeHolder} = this.props;
+    const {
+      name,
+      placeHolder,
+      onChange
+    } = this.props;
     return (
-      <div className={className}>
-        <input name={name} placeholder={placeHolder}/>
+      <div className={'AmountInput'}>
+        <input
+            onChange={onChange}
+            name={name}
+            placeholder={placeHolder}
+        />
       </div>
     );
   }

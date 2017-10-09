@@ -1,26 +1,42 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames/bind';
 
-import styles from './TransactionSummaryBox.scss';
+import './TransactionSummaryBox.scss';
 
-const cx = classNames.bind(styles);
 
 const propTypes = PropTypes && {
-  children: PropTypes.node
+  heading: PropTypes.string.isRequired,
+  type: PropTypes.oneOf([]),
+  status: PropTypes.oneOf([]),
+  amount: PropTypes.object.isRequired,
+  token: PropTypes.oneOf([])
 };
 const defaultProps = {};
 
 
 class TransactionSummaryBox extends PureComponent {
   render() {
-    const className = cx({
-      base: true
-    });
+
+    const {
+      heading,
+      type,
+      status,
+      amount,
+      token
+    } = this.props;
+
     return (
-      <div className={className}>
-        {this.props.children}
+      <div className={'TransactionSummaryBox'}>
+        <h4>{heading}</h4>
+        <div>
+          <span className='transaction-type'>{type}</span>
+          <span className='transaction-amount'>
+            {amount}
+            <span className='token'>{token}</span>
+          </span>
+          <span className='transaction-status'>{status}</span>
+        </div>
       </div>
     );
   }

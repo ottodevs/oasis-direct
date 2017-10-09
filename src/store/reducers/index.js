@@ -7,13 +7,16 @@ import tokens from './tokens';
 import transactions from "./transactions";
 import network from './network';
 import params from './params';
+import tokenPicker from './tokenPicker';
+
 
 
 export default combineReducers({
-  ['system']:        system.reducer,
-  ['tokens']:        tokens.reducer,
-  ['network']:       network.reducer,
-  ['transaction']:   transactions.reducer,
-  ['params']:        params.reducer
+  'system':        system.reducer,
+  'tokens':        tokens.reducer,
+  'network':       network.reducer,
+  'transactions':  transactions.reducer,
+  'params':        params.reducer,
+  'tokenPicker':   tokenPicker.reducer
 
 })

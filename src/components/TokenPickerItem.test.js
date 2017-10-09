@@ -2,14 +2,18 @@
 /* eslint-disable import/first */
 import React from 'react';
 
-import StartTransactionButton from './StartTransactionButton';
+import TokenPickerItem from './TokenPickerItem';
 
 
-describe('(Component) StartTransactionButton', () => {
+describe('(Component) TokenPickerItem', () => {
   it('should render', () => {
-    const props = {};
+    const props = {
+      children: (
+        <span>test</span>
+      )
+    };
     const wrapper = shallow(
-      <StartTransactionButton {...props}/>
+      <TokenPickerItem {...props}/>
     );
 
     expect(wrapper).toMatchSnapshot();

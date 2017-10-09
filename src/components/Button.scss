@@ -1,0 +1,14 @@
+.Button {
+  background-color: #448AFF;
+  color: #D6DAE6;
+  border: 1px solid #DDE4F6;
+  width: 100%;
+  text-transform: uppercase;
+  padding: 5px;
+
+  &[disabled] {
+    background-color: #ffffff;
+    cursor: not-allowed;
+  }
+}
+

@@ -10,7 +10,7 @@ const reducer = handleActions({}, Immutable.fromJS(
     from: null,
     to: null,
     amountSell: null,
-    amountBuy: 0,
+    amountBuy: 0
   }
 ));
 

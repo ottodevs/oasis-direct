@@ -2,18 +2,14 @@
 /* eslint-disable import/first */
 import React from 'react';
 
-import TokenPicker from './TokenPicker';
+import Button from './Button';
 
 
-describe('(Component) TokenPicker', () => {
+describe('(Component) Button', () => {
   it('should render', () => {
-    const props = {
-      children: (
-        <span>test</span>
-      )
-    };
+    const props = {};
     const wrapper = shallow(
-      <TokenPicker {...props}/>
+      <Button {...props}/>
     );
 
     expect(wrapper).toMatchSnapshot();

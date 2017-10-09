@@ -5,12 +5,11 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import systemSelectors from '../store/selectors/system'
-import TradeTypeSelectorWrapper from './TradeTypeSelector';
 import TradeDetailsWrapper from './TradeDetails';
 import TradeFinalizerWrapper from "./TradeFinalizer";
 
 const propTypes = PropTypes && {
-  // actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired
 };
 
 export class WizardWrapper extends PureComponent {
@@ -19,10 +18,13 @@ export class WizardWrapper extends PureComponent {
   render() {
     const { activeStep } = this.props;
     switch(activeStep) {
+
       case 1:
         return (<TradeDetailsWrapper/>);
       case 2:
         return (<TradeFinalizerWrapper></TradeFinalizerWrapper>)
+
+      default: return null;
     }
   }
 }
