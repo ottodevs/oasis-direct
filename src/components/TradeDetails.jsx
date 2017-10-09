@@ -1,9 +1,8 @@
 import React, {PureComponent} from 'react';
 import {PropTypes} from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-import classNames from 'classnames/bind';
 
-import styles from './TradeDetails.scss';
+import './TradeDetails.scss';
 import TradeToken from '../components/TradeToken';
 import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
@@ -28,6 +27,7 @@ class TradeDetails extends PureComponent {
 
     return (
       <div className={'TradeDetails'}>
+        <TokenPickerContainer/>
         <section className="TradeDetailsHeading">
           <h3>Choose which Assets to trade</h3>
         </section>
