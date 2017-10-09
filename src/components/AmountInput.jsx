@@ -20,11 +20,12 @@ class AmountInput extends PureComponent {
       onChange
     } = this.props;
     return (
-      <div className={'AmountInput'}>
-        <input
-            onChange={onChange}
-            name={name}
-            placeholder={placeHolder}
+      <div className='TakerTokenAmount'>
+        <input type="number"
+               onChange={onChange}
+               name={name} placeholder={placeHolder}
+               onFocus={(e) => e.target.placeholder = ""}
+               onBlur={(e) => e.target.placeholder = placeHolder}
         />
       </div>
     );

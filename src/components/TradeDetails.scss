@@ -1,3 +1,50 @@
 .TradeDetails {
-  position: relative;
+
+  .TradeDetailsHeading {
+    text-align: center;
+
+    color: rgba(73, 73, 74, 0.90);
+
+    h1, h2, h3, h4, h5, h6 {
+      -webkit-margin-before: 0;
+
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+
+      line-height: 1.25;
+    }
+  }
+
+  .TradeTokenSelector {
+    display: inline-block;
+    width: 152px;
+
+    .TradeToken {
+      width: 82px;
+      height: 72px;
+      margin: 0 auto;
+      border: 1px solid #DEE4F4;
+      border-radius: 8px;
+      cursor: pointer;
+
+      .Pictogram {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .TakerTokenAmount {
+      margin-top: 16px;
+    }
+  }
+
+  .Separator {
+    display: inline-block;
+    box-sizing: content-box;
+    width: 24px;
+    border: 1px solid transparent;
+  }
 }
