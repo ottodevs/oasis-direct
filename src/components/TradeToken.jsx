@@ -6,23 +6,15 @@ import classNames from 'classnames/bind';
 import styles from './TradeToken.scss';
 import Pictogram from "./Pictogram";
 
-const cx = classNames.bind(styles);
-
-const propTypes = PropTypes && {
-  controlName: PropTypes.string.isRequired
-};
+const propTypes = PropTypes && {};
 const defaultProps = {};
 
 
 class TradeToken extends PureComponent {
   render() {
-    const className = cx({
-      base: true
-    });
-    const { controlName, token } = this.props;
+    const { token } = this.props;
     return (
-      <div className={className}>
-        <input name={controlName} type='hidden'/>
+      <div className='TradeToken'>
         <Pictogram symbol={token}/>
       </div>
     );
