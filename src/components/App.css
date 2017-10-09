@@ -1,3 +1,9 @@
+/*TODO: fix this and isolate for the scope of our app - CSS Module ?*/
+
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }

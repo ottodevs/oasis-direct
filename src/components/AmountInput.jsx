@@ -3,9 +3,7 @@ import {PropTypes} from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames/bind';
 
-import styles from './AmountInput.scss';
-
-const cx = classNames.bind(styles);
+import './AmountInput.scss';
 
 const propTypes = PropTypes && {
     name: PropTypes.string.isRequired,
@@ -15,13 +13,14 @@ const defaultProps = {};
 
 class AmountInput extends PureComponent {
   render() {
-    const className = cx({
-      base: true
-    });
     const {name, placeHolder} = this.props;
     return (
-      <div className={className}>
-        <input name={name} placeholder={placeHolder}/>
+      <div className='TakerTokenAmount'>
+        <input type="number"
+               name={name} placeholder={placeHolder}
+               onFocus={(e) => e.target.placeholder = ""}
+               onBlur={(e) => e.target.placeholder = placeHolder}
+        />
       </div>
     );
   }

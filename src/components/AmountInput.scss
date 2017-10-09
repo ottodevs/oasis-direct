@@ -1,2 +1,35 @@
-.base {
+.TakerTokenAmount {
+  ._text {
+    font-family: Montserrat, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(73, 73, 74, 0.90);
+
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  input {
+    @extend ._text;
+
+    max-width: 100%;
+    border-radius: 2px;
+    padding: 8px;
+    height: 32px;
+    border: 1px solid #DEE4F4;
+  }
+
+  ::-webkit-input-placeholder {
+    @extend ._text;
+    font-size: 11px;
+    text-transform: uppercase;
+
+    color: rgba(73, 73, 74, 0.90);
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }

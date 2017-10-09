@@ -10,7 +10,7 @@ import SetAssets from './SetAssets';
 import SetDetailsBasic from './SetDetailsBasic';
 import TradeBasic from './TradeBasic';
 import WizardWrapper from "../containers/Wizard";
-
+import './Frame.scss'
 
 const settings = require('../settings');
 const dstoken = require('../abi/dstoken');
@@ -21,24 +21,15 @@ const dsproxy = require('../abi/dsproxy');
 const proxyActions = require('../proxyActions');
 
 
-const CardStyle = {
-  padding: '10px',
-  margin: '10px',
-  width: 400,
-  height: 400,
-  boxShadow: 'rgba(0, 0, 0, 0.17) 1px 1px 4px, rgba(0, 0, 0, 0.17) -1px -1px 4px',
-  borderRadius: 10
-};
 
-const Card = ({ children }) => (
-  <div style={CardStyle} className='card'>
+const Frame = ({ children }) => (
+  <div className='Frame'>
     {children}
   </div>
 );
 
 class App extends Component {
   constructor(props, context) {
-    console.log(props, context);
     super(props, context);
     const initialState = this.getInitialState();
     this.state = {
@@ -393,7 +384,7 @@ class App extends Component {
       return { system };
     });
   }
-
+frame
   goToDetailsBasicStep = (from, to) => {
     this.setState((prevState, props) => {
       const system = { ...prevState.system };
@@ -456,7 +447,7 @@ class App extends Component {
 
   render() {
     return (
-      this.state.network.isConnected ? <Card><WizardWrapper/></Card>: <NoConnection />
+      this.state.network.isConnected ? <Frame><WizardWrapper/></Frame>: <NoConnection />
     );
   }
 }
