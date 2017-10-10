@@ -9,7 +9,8 @@ import Pictogram from "./Pictogram";
 const propTypes = PropTypes && {
   tokenSymbol: PropTypes.string.isRequired,
   activeTokenControlName: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired
 };
 const defaultProps = {};
 
@@ -31,10 +32,11 @@ class TokenPickerItem extends PureComponent {
   }
 
   render() {
-    const { tokenSymbol } = this.props;
+    const { tokenSymbol, isDisabled } = this.props;
     return (
         <div onClick={this.onClick} className='TradeToken'>
           <div>
+            {isDisabled? 'yes': 'no'}
             <Pictogram symbol={tokenSymbol}/>
           </div>
           <div>{tokenSymbol}</div>
