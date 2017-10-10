@@ -22,7 +22,7 @@ class CloseButton extends PureComponent {
 
   render() {
     return (
-        <div className='CloseButton' onClick={this.onClick}>x</div>
+        <span className='CloseButton' onClick={this.onClick}></span>
     );
   }
 }

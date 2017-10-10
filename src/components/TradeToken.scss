@@ -22,7 +22,7 @@
   }
 
   .DigixToken {
-    fill: EF6C00;
+    fill: #EF6C00;
   }
 
   .GolemToken {
@@ -37,6 +37,20 @@
     .EtherToken, .AugurToken, .MakerToken, .GolemToken, .DigixToken, .SaiToken {
       fill: #DEE4F4;
     }
+
+    .TradeTokenName {
+      color:#DEE4F4;
+    }
+  }
+
+  &Name {
+    font-family: OpenSans, sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    color: #4C4C4C;
+    letter-spacing: 1.45px;
+    text-transform: capitalize;
   }
 }
 

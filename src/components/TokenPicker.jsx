@@ -40,7 +40,7 @@ class TokenPicker extends PureComponent {
                 key={token.get('symbol')}
                 activeTokenControlName={activeTokenControlName}
                 onClick={onTokenSelected}
-                tokenSymbol={token.get('symbol')}
+                token={token}
             />
         )
     )

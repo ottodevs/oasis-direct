@@ -24,22 +24,21 @@ class TokenPickerItem extends PureComponent {
 
   onClick() {
     const {
-      tokenSymbol,
+      token,
       activeTokenControlName
     } = this.props;
 
-    this.props.onClick({ tokenSymbol, activeTokenControlName });
+    this.props.onClick({ tokenSymbol:token.get('symbol'), activeTokenControlName });
   }
 
   render() {
-    const { tokenSymbol, isDisabled } = this.props;
+    const { token, isDisabled } = this.props;
     return (
-        <div onClick={this.onClick} className='TradeToken'>
+        <div onClick={this.onClick} className={ 'TradeToken ' + (isDisabled ? 'TradeToken TradeToken--disabled': '')} >
           <div>
-            {isDisabled? 'yes': 'no'}
-            <Pictogram symbol={tokenSymbol}/>
+            <Pictogram symbol={token.get('symbol')}/>
           </div>
-          <div>{tokenSymbol}</div>
+          <div className="TradeTokenName">{token.get('name')}</div>
         </div>
     );
   }

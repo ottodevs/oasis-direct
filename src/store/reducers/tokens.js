@@ -26,12 +26,12 @@ const reducer = handleActions(
     Immutable.fromJS(
         {
           items: [
-            { symbol: 'ETH' },
-            { symbol: 'MKR' },
-            { symbol: 'REP' },
-            { symbol: 'GNT' },
-            { symbol: 'DGX' },
-            { symbol: 'SAI' },
+            { symbol: 'ETH', name: 'Ether' },
+            { symbol: 'MKR', name: 'Maker' },
+            { symbol: 'REP', name: 'Augur' },
+            { symbol: 'GNT', name: 'Golem' },
+            { symbol: 'DGX', name: 'Digix' },
+            { symbol: 'SAI', name: 'SAI' },
           ],
           deposit: {
             amount: null,
