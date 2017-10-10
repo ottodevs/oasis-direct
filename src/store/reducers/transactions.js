@@ -1,49 +1,27 @@
-import { handleActions, createAction } from 'redux-actions';
+import {handleActions, createAction} from 'redux-actions';
 import Immutable from 'immutable';
 
-const SET_AMOUNT_SELL = 'TRANSACTIONS/SET_AMOUNT_SELL';
-const SET_AMOUNT_BUY = 'TRANSACTIONS/SET_AMOUNT_BUY';
 const START_TRANSACTION = 'TRANSACTIONS/START_TRANSACTION';
 
+const StartTransaction = createAction(
+    START_TRANSACTION, (state) => undefined
+)
 
-const setAmountBuy = createAction(
-    SET_AMOUNT_BUY,
-    ({ target:{ value } }) => value
-);
-
-const setAmountSell = createAction(
-    SET_AMOUNT_SELL,
-    ({ target: { value } }) => value
-);
-const startTransaction = createAction(
-    START_TRANSACTION,
-    () => null
-);
+;
 
 const actions = {
-  setAmountBuy,
-  setAmountSell,
-  startTransaction
+  StartTransaction,
 };
 
 const reducer = handleActions(
     {
-      [setAmountSell]: (state, {payload}) =>
-        state
-          .update('amountSell', v => v)
-          .update('amountBuy', v => state.get('amountSell') ),
-      [setAmountBuy]:  (state, { payload }) => (state)
+      StartTransaction,
     }
-    , Immutable.fromJS({
-      fromToken: null,
-      toToken: null,
-      amountSell: null,
-      amountBuy: 0
-    }));
+    , Immutable.fromJS({}));
 
 export default {
   actions,
-  reducer
+  reducer,
 };
 
 

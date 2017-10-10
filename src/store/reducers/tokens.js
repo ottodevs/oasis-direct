@@ -2,15 +2,31 @@ import {createAction, handleActions} from 'redux-actions';
 import Immutable from 'immutable';
 
 const TOKEN_SELECTED = 'TOKENS/TOKEN_SELECTED';
+const DEPOSIT_AMOUNT_CHANGED = 'TOKENS/DEPOSIT_AMOUNT_CHANGED';
+const BUY_AMOUNT_CHANGED = 'TOKENS/BUY_AMOUNT_CHANGED';
 
 const TokenSelected = createAction(
     TOKEN_SELECTED,
     (v) => v,
 );
 
+const DepositAmountChanged = createAction(
+    DEPOSIT_AMOUNT_CHANGED,
+    ({ target: { value } }) => parseFloat(value.replace(/\D+/g,'')),
+);
+
+const BuyAmountChanged = createAction(
+    BUY_AMOUNT_CHANGED,
+    ({ target: { value } }) => parseFloat(value.replace(/\D+/g,'')),
+);
+
 const actions = {
   TokenSelected,
+  BuyAmountChanged,
+  DepositAmountChanged
 };
+
+
 
 const reducer = handleActions(
     {
@@ -20,10 +36,21 @@ const reducer = handleActions(
       ) => {
         return state
         .updateIn(
-            [activeTokenControlName, 'symbol'],
+            [activeTokenControlName, 'value'],
             () => tokenSymbol
         );
-      }
+      },
+      [DepositAmountChanged]: (state, {payload}) =>
+          state.updateIn(
+              ['deposit','amount'],
+              v => payload
+          ),
+      [BuyAmountChanged]: (state, {payload}) =>
+          state.updateIn(
+            ['buy','amount'],
+            v => payload
+      ),
+
     },
 
     Immutable.fromJS(

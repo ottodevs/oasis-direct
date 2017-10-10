@@ -12,13 +12,13 @@ import {Sai} from "./tokens/Sai";
 
 
 const tags = {
-  ETH: <Ether></Ether>,
-  MKR: <Maker></Maker>,
-  REP: <Augur></Augur>,
-  GNT: <Golem></Golem>,
-  DGX: <Digix></Digix>,
-  SAI: <Sai></Sai>,
-  trade: <img alt="arrow" src="/assets/od-icons/od_transition_arrow.svg"/>,
+  ETH: (<Ether/>),
+  MKR: (<Maker/>),
+  REP: (<Augur/>),
+  GNT: (<Golem/>),
+  DGX: (<Digix/>),
+  SAI: (<Sai/>),
+  trade: (<img alt="arrow" src="/assets/od-icons/od_transition_arrow.svg"/>),
 };
 
 const propTypes = PropTypes && {

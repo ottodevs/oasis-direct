@@ -7,6 +7,7 @@ import Pictogram from "./Pictogram";
 
 
 const propTypes = PropTypes && {
+  tokenSymbol: PropTypes.string,
   controlName: PropTypes.string,
   onToggleTokenPicker: PropTypes.func.isRequired
 };
@@ -30,11 +31,12 @@ class TradeToken extends PureComponent {
     return controlName ? (<input name={controlName} type='hidden'/>) : null;
   }
   render() {
-    const { token } = this.props;
+    const { tokenSymbol } = this.props;
+    console.log(tokenSymbol);
     return (
       <div onClick={this.onClick} className={'TradeToken'}>
         {this.formControl()}
-        <Pictogram symbol={token}/>
+        <Pictogram symbol={tokenSymbol}/>
       </div>
     );
   }

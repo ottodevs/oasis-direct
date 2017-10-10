@@ -28,7 +28,8 @@ class TokenPicker extends PureComponent {
       onTokenSelected,
       activeTokenControlName,
       selectedToken,
-      disabledTokens
+      disabledTokens,
+      onToggleOpen
     } = this.props;
 
     console.log('dt', disabledTokens, disabledTokens.includes('SAI'));
@@ -41,6 +42,7 @@ class TokenPicker extends PureComponent {
                 activeTokenControlName={activeTokenControlName}
                 onTokenSelected={onTokenSelected}
                 token={token}
+                onToggleOpen={onToggleOpen}
             />
         )
     )
