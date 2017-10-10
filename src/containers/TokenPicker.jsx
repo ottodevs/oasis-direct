@@ -20,7 +20,7 @@ export class TokenPickerWrapper extends PureComponent {
       isTokenPickerOpen,
       actions,
       tokens,
-      isSelected,
+      selectedToken,
       disabledTokens,
       activeTokenControlName
     } = this.props;
@@ -30,7 +30,7 @@ export class TokenPickerWrapper extends PureComponent {
                 disabledTokens={disabledTokens}
                 activeTokenControlName={activeTokenControlName}
                 tokens={tokens}
-                isSelected={isSelected}
+                selectedToken={selectedToken}
                 onTokenSelected={actions.TokenSelected}
                 onToggleOpen={actions.ToggleOpen}
             />
@@ -40,12 +40,11 @@ export class TokenPickerWrapper extends PureComponent {
 }
 
 export function mapStateToProps(state, props) {
-  console.log(state, props);
   return {
     tokens: tokensSelectors.items(state),
     activeTokenControlName: tokenPickerSelectors.activeTokenControlName(state),
     isTokenPickerOpen: tokenPickerSelectors.isOpen(state),
-    isSelected: tokensSelectors.isSelected(state, props),
+    selectedToken: tokenPickerSelectors.selectedToken(state),
     disabledTokens: tokensSelectors.activeControlDisabledTokens(state)
   };
 }

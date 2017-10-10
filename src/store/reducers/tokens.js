@@ -14,11 +14,14 @@ const actions = {
 
 const reducer = handleActions(
     {
-      [TokenSelected]: (state, { payload }) => {
+      [TokenSelected]: (
+          state,
+          { payload: {tokenSymbol, activeTokenControlName} }
+      ) => {
         return state
         .updateIn(
-            ['buy', 'symbol'],
-            () => payload.tokenSymbol
+            [activeTokenControlName, 'symbol'],
+            () => tokenSymbol
         );
       }
     },
