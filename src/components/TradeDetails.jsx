@@ -8,6 +8,7 @@ import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
 import Button from './Button';
 import TradeDetailsInfoBox from './TradeDetailsInfoBox';
+import TokenPickerContainer from './../containers/TokenPicker'
 
 
 
