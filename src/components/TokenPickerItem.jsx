@@ -7,10 +7,11 @@ import Pictogram from "./Pictogram";
 
 
 const propTypes = PropTypes && {
-  tokenSymbol: PropTypes.string.isRequired,
+  token: PropTypes.object.isRequired,
   activeTokenControlName: PropTypes.string.isRequired,
   onTokenSelected: PropTypes.func.isRequired,
-  isDisabled: PropTypes.bool.isRequired
+  isDisabled: PropTypes.bool.isRequired,
+  onToggleOpen: PropTypes.func.isRequired
 };
 const defaultProps = {};
 
@@ -28,6 +29,7 @@ class TokenPickerItem extends PureComponent {
       activeTokenControlName
     } = this.props;
     this.props.onTokenSelected({ tokenSymbol: token.get('symbol'), activeTokenControlName });
+    this.props.onToggleOpen();
 
   }
 

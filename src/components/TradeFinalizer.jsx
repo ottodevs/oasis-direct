@@ -17,7 +17,35 @@ const NeedHelpBox = () => (
   </div>
 );
 
+const TRANSACTION_TYPE_DEPOSIT = 'TRANSACTIONS/TRANSACTION_TYPE_DEPOSIT';
+const TRANSACTION_TYPE_BUY = 'TRANSACTIONS/TRANSACTION_TYPE_BUY';
+const TRANSACTION_STATUS_SIGN = 'TRANSACTIONS/TRANSACTION_STATUS_SIGN';
+const TRANSACTION_STATUS_WAITING = 'TRANSACTIONS/TRANSACTION_STATUS_WAITING';
 class TradeFinalizer extends PureComponent {
+  transactionsList = [
+    {
+      heading: 'Transaction 1',
+      type: TRANSACTION_TYPE_DEPOSIT,
+      status: TRANSACTION_STATUS_SIGN,
+      amount: 1234.12345,
+      token: 'ETH'
+
+    },
+    {
+      heading: 'Transaction 2',
+      type: TRANSACTION_TYPE_BUY,
+      status: TRANSACTION_STATUS_WAITING,
+      amount: 22324.12345,
+      token: 'ETH'
+
+    },
+
+  ];
+  transactions() {
+    return this.transactionsList.map(
+        (t, i) => (<TransactionSummaryBox key={i} {...t}/>)
+    )
+  }
   render() {
     return (
       <div className={'TradeFinalizer'}>
@@ -25,7 +53,7 @@ class TradeFinalizer extends PureComponent {
           <h3>Finalize trade</h3>
         </div>
         <div>
-          <TransactionSummaryBox/>
+          {this.transactions()}
         </div>
         <div>
           <NeedHelpBox/>

@@ -6,6 +6,7 @@ import './Button.scss';
 
 const propTypes = PropTypes && {
   disabled: PropTypes.bool,
+  onClick: PropTypes.func.isRequired,
   type: PropTypes.string,
   text: PropTypes.string.isRequired
 };
@@ -16,9 +17,19 @@ const defaultProps = {
 
 class Button extends PureComponent {
   render() {
-    const { disabled, type, text } = this.props;
+    const {
+      disabled,
+      type,
+      text,
+      onClick
+    } = this.props;
     return (
-      <button disabled={disabled} className={'Button'} type={type}>
+      <button
+          onClick={onClick}
+          disabled={disabled}
+          className={'Button'}
+          type={type}
+      >
         {text}
       </button>
     );

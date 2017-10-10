@@ -5,9 +5,13 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TradeDetails from "../components/TradeDetails";
-import transactionsHandler from '../store/reducers/transactions';
+import systemHandler from '../store/reducers/system';
 import transactionsSelectors from '../store/selectors/transactions';
 import tokenPickerHandler from '../store/reducers/tokenPicker';
+import tokensHandler from '../store/reducers/tokens';
+
+import tokensSelectors from '../store/selectors/tokens';
+
 
 
 const propTypes = PropTypes && {
@@ -22,15 +26,23 @@ export class TradeDetailsWrapper extends PureComponent {
     const {
       actions,
       disabled,
+      depositTokenValue,
+      buyTokenValue,
+      depositTokenAmount,
+      buyTokenAmount
     } = this.props;
 
     return (
       <TradeDetails
-        onAmountBuyChange={actions.setAmountBuy}
-        onAmountSellChange={actions.setAmountSell}
-        onStartTransaction={actions.startTransaction}
+        onBuyAmountChange={actions.BuyAmountChanged}
+        onDepositAmountChange={actions.DepositAmountChanged}
+        onStartTransaction={actions.StartTransaction}
         onToggleTokenPicker={actions.ToggleTokenPicker}
+        depositTokenValue={depositTokenValue}
+        buyTokenValue={buyTokenValue}
         disabled={disabled}
+        depositTokenAmount={depositTokenAmount}
+        buyTokenAmount={buyTokenAmount}
       />
     );
   }
@@ -38,12 +50,18 @@ export class TradeDetailsWrapper extends PureComponent {
 
 export function mapStateToProps(state) {
   return {
-    disabled: transactionsSelectors.canStartTransaction(state),
+    disabled: !transactionsSelectors.canStartTransaction(state),
+    depositTokenValue: tokensSelectors.depositTokenValue(state),
+    buyTokenValue: tokensSelectors.buyTokenValue(state),
+    depositTokenAmount: tokensSelectors.depositTokenAmount(state),
+    buyTokenAmount: tokensSelectors.buyTokenAmount(state),
   };
 }
 export function mapDispatchToProps(dispatch) {
   const actions = {
-    ...transactionsHandler.actions,
+    StartTransaction: systemHandler.actions.StartTransaction,
+    BuyAmountChanged: tokensHandler.actions.BuyAmountChanged,
+    DepositAmountChanged: tokensHandler.actions.DepositAmountChanged,
     ToggleTokenPicker: tokenPickerHandler.actions.ToggleOpen
   };
   return { actions: bindActionCreators(actions, dispatch) };

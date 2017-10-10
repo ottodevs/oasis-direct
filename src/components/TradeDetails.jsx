@@ -11,18 +11,31 @@ import TradeDetailsInfoBox from './TradeDetailsInfoBox';
 import TokenPickerContainer from './../containers/TokenPicker'
 
 
-
-const propTypes = PropTypes && {};
+const propTypes = PropTypes && {
+  onBuyAmountChange: PropTypes.func.isRequired,
+  onDepositAmountChange: PropTypes.func.isRequired,
+  onStartTransaction: PropTypes.func.isRequired,
+  onToggleTokenPicker: PropTypes.func.isRequired,
+  depositTokenValue: PropTypes.string.isRequired,
+  buyTokenValue: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  depositTokenAmount: PropTypes.number,
+  buyTokenAmount: PropTypes.number
+};
 const defaultProps = {};
 
 class TradeDetails extends PureComponent {
   render() {
     const {
-      onAmountBuyChange,
-      onAmountSellChange,
+      onBuyAmountChange,
+      onDepositAmountChange,
       onStartTransaction,
       onToggleTokenPicker,
+      depositTokenValue,
+      buyTokenValue,
       disabled,
+      depositTokenAmount,
+      buyTokenAmount
     } = this.props;
 
     return (
@@ -38,10 +51,11 @@ class TradeDetails extends PureComponent {
                 <TradeToken
                   onToggleTokenPicker={onToggleTokenPicker}
                   controlName={'deposit'}
-                  token="ETH"
+                  tokenSymbol={depositTokenValue}
                 />
                 <AmountInput
-                  onChange={onAmountSellChange}
+                  value={depositTokenAmount}
+                  onChange={onDepositAmountChange}
                   name="deposit"
                   placeHolder="Deposit Amount"
                 />
@@ -52,9 +66,12 @@ class TradeDetails extends PureComponent {
               <div className='TradeTokenSelector'>
                 <TradeToken
                   onToggleTokenPicker={onToggleTokenPicker}
-                  controlName={'buy'} token="MKR"/>
+                  controlName={'buy'}
+                  tokenSymbol={buyTokenValue}
+                />
                 <AmountInput
-                  onChange={onAmountBuyChange}
+                  value={buyTokenAmount}
+                  onChange={onBuyAmountChange}
                   name="buy"
                   placeHolder="Receive Amount"
                 />
