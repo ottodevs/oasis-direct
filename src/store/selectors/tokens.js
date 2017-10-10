@@ -1,13 +1,11 @@
 import { createSelector } from 'reselect';
-import tokenPickerSelectors from './tokenPicker';
-
 
 const state = (s) => {
   return s.get('tokens');
 };
 const activeControlDisabledTokens = createSelector(
     state,
-    tokenPickerSelectors.activeTokenControlName,
+    s => s.getIn(['tokenPicker', 'activeTokenControlName']),
     (s, atcn) => s.getIn([ atcn, 'disabled'])
 )
 const items = createSelector(
@@ -15,22 +13,8 @@ const items = createSelector(
     (s) => s.get('items')
 );
 
-const isSelected = createSelector(
-    state,
-    (s) => !!s.get('isOpen')
-);
-
-const disabledTokens = createSelector(
-    state,
-    (s, act) => {
-      console.log({act});
-      s.getIn(['buy','disabled']);
-    }
-
-);
-
 export default {
+  state,
   items,
-  isSelected,
   activeControlDisabledTokens
 }

@@ -13,7 +13,7 @@ const propTypes = PropTypes && {
   onToggleOpen: PropTypes.func.isRequired,
   tokens: PropTypes.instanceOf(Immutable.List).isRequired,
   activeTokenControlName: PropTypes.string.isRequired,
-  isSelected: PropTypes.bool.isRequired,
+  selectedToken: PropTypes.string.isRequired,
   disabledTokens: PropTypes.instanceOf(Immutable.List).isRequired
 };
 const defaultProps = {};
@@ -27,7 +27,7 @@ class TokenPicker extends PureComponent {
       tokens,
       onTokenSelected,
       activeTokenControlName,
-      isSelected,
+      selectedToken,
       disabledTokens
     } = this.props;
 
@@ -35,11 +35,11 @@ class TokenPicker extends PureComponent {
     return tokens.map(
         token => (
             <TokenPickerItem
-                isDisabled={disabledTokens.includes(t => token.get('symbol'))}
-                isSelected={isSelected}
+                isDisabled={disabledTokens.includes(token.get('symbol'))}
+                isSelected={selectedToken===token.get('symbol')}
                 key={token.get('symbol')}
                 activeTokenControlName={activeTokenControlName}
-                onClick={onTokenSelected}
+                onTokenSelected={onTokenSelected}
                 token={token}
             />
         )
