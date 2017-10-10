@@ -34,12 +34,16 @@ const reducer = handleActions(
             { symbol: 'SAI' },
           ],
           deposit: {
-            symbol: 'ETH',
             amount: null,
+            disabled: [
+                'MKR', 'REP', 'GNT', 'DGX','SAI'
+            ],
+            value: 'ETH',
           },
           buy: {
-            symbol: 'SAI',
             amount: null,
+            disabled: ['ETH'],
+            value: 'SAI',
           },
         },
     ));

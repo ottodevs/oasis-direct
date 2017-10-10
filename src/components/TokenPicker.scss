@@ -1,26 +1,27 @@
 .TokenPicker {
-  padding: 20px;
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
   background-color: #ffffff;
+  bottom: 0;
+  display: flex;
+  left: 0;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
   .Tokens {
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    justify-content: space-around;
     .TradeToken {
-      width: 80px;
       height: 80px;
+      width: 80px;
     }
   }
 
   .CloseButton {
-    position: absolute;
-    top:10px;
-    right:10px;
     cursor: pointer;
+    position: absolute;
+    right:10px;
+    top:10px;
   }
 }
