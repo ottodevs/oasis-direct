@@ -34,6 +34,9 @@
   }
 
   &--disabled {
+    cursor: auto;
+    pointer-events: none;
+
     .EtherToken, .AugurToken, .MakerToken, .GolemToken, .DigixToken, .SaiToken {
       fill: #DEE4F4;
     }
