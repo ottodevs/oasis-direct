@@ -1,35 +1,40 @@
-import React, { PureComponent } from 'react';
-import { PropTypes } from 'prop-types';
+import React, {PureComponent} from 'react';
+import {PropTypes} from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './Pictogram.scss';
+import {Ether} from "./tokens/Ether";
+import {Maker} from "./tokens/Maker";
+import {Augur} from "./tokens/Augur";
+import {Golem} from "./tokens/Golem";
+import {Digix} from "./tokens/Digix";
+import {Sai} from "./tokens/Sai";
 
 
-const icons = {
-  ETH:  "/assets/od-icons/od_ether.svg",
-  MKR:  "/assets/od-icons/od_maker.svg",
-  REP:  "/assets/od-icons/od_augur.svg",
-  GNT:  "/assets/od-icons/od_golem.svg",
-  DGX:  "/assets/od-icons/od_digix.svg",
-  SAI:  "/assets/od-icons/od_sai.svg",
-  trade:"",
+const tags = {
+  ETH: <Ether></Ether>,
+  MKR: <Maker></Maker>,
+  REP: <Augur></Augur>,
+  GNT: <Golem></Golem>,
+  DGX: <Digix></Digix>,
+  SAI: <Sai></Sai>,
+  trade: <img alt="arrow" src="/assets/od-icons/od_transition_arrow.svg"/>,
 };
 
 const propTypes = PropTypes && {
-  size: PropTypes.number,
-  symbol: PropTypes.oneOf(Object.keys(icons)),
-};
+    size: PropTypes.number,
+    symbol: PropTypes.oneOf(Object.keys(tags)),
+  };
 
-const defaultProps = {
-};
+const defaultProps = {};
 
 
 class Pictogram extends PureComponent {
   render() {
-    const { symbol } = this.props;
+    const {symbol} = this.props;
     return (
       <div className='Pictogram'>
-        <img alt={`${icons[symbol]} token symbol`} src={icons[symbol]}/>
+        {tags[symbol]}
       </div>
     );
   }

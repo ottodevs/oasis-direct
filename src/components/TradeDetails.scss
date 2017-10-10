@@ -2,7 +2,7 @@
 
   .TradeDetailsHeading {
     text-align: center;
-
+    margin-bottom: 48px;
     color: rgba(73, 73, 74, 0.90);
 
     h1, h2, h3, h4, h5, h6 {
@@ -20,22 +20,6 @@
     display: inline-block;
     width: 152px;
 
-    .TradeToken {
-      width: 82px;
-      height: 72px;
-      margin: 0 auto;
-      border: 1px solid #DEE4F4;
-      border-radius: 8px;
-      cursor: pointer;
-
-      .Pictogram {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-
     .TakerTokenAmount {
       margin-top: 16px;
     }
@@ -44,7 +28,26 @@
   .Separator {
     display: inline-block;
     box-sizing: content-box;
+    position: relative;
+    bottom: 70px; //find a better solution for this centric positioning
     width: 24px;
     border: 1px solid transparent;
+
+    .Pictogram {
+      display: flex;
+      align-items: center;
+      justify-items: center;
+
+      img {
+        width: 16px;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .TradeDetailsInfoBox {
+    margin: 16px 0;
+    border: 1px solid rgba(156,156,157,0.08);
+    height: 30px;
   }
 }
