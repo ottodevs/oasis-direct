@@ -29,17 +29,15 @@ class TradeDetailsInfoBox extends PureComponent {
     return (
       <div className={'TradeDetailsInfoBox'}>
         <span>
-          <span className='market'>{market}</span>
+          <span className='Value'>{market}</span>
         </span>
         <span>
-          <span>Price</span>
-          <span className='amount'>{tokenPrice}</span>
-          <span className='token'>{tokenPriceUnitSymbol}</span>
+          <span className="Label">Price </span>
+          <span className='Value'>{tokenPrice} {tokenPriceUnitSymbol}</span>
         </span>
         <span>
-          <span>Fee</span>
-          <span className='amount'>{transactionFee}</span>
-          <span className='token'>{tokenPriceUnitSymbol}</span>
+          <span className="Label">Fee </span>
+          <span className='Value'>{transactionFee} ETH</span>
         </span>
       </div>
     );
