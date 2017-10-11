@@ -1,14 +1,13 @@
 import React, {PureComponent} from 'react';
 import {PropTypes} from 'prop-types';
-// import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import './TradeDetails.scss';
 import TradeToken from '../components/TradeToken';
 import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
 import Button from './Button';
-import TradeDetailsInfoBox from './TradeDetailsInfoBox';
 import TokenPickerContainer from './../containers/TokenPicker'
+import TradeDetailsInfoWrapper from '../containers/TradeDetailsInfo';
 
 
 const propTypes = PropTypes && {
@@ -78,7 +77,7 @@ class TradeDetails extends PureComponent {
               </div>
             </div>
             <div>
-              <TradeDetailsInfoBox/>
+              <TradeDetailsInfoWrapper/>
             </div>
             <div>
               <Button

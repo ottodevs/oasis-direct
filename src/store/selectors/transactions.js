@@ -15,6 +15,7 @@ const isTokenPickerOpen = createSelector(
 );
 
 export default {
+  state,
   canStartTransaction,
   isTokenPickerOpen
 }

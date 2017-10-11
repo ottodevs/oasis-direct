@@ -6,7 +6,12 @@ import './TradeDetailsInfoBox.scss';
 
 
 const propTypes = PropTypes && {
-  children: PropTypes.node
+  transactionInfo: PropTypes.shape({
+    market: PropTypes.string,
+    tokenPrice: PropTypes.number,
+    transactionFee: PropTypes.number,
+    tokenPriceUnitSymbol: PropTypes.string
+  })
 };
 const defaultProps = {};
 
@@ -14,10 +19,12 @@ const defaultProps = {};
 class TradeDetailsInfoBox extends PureComponent {
   render() {
     const {
-      market,
-      price,
-      fee,
-      token
+      transactionInfo: {
+        market,
+        tokenPrice,
+        transactionFee,
+        tokenPriceUnitSymbol
+      }
     } = this.props;
     return (
       <div className={'TradeDetailsInfoBox'}>
@@ -26,13 +33,13 @@ class TradeDetailsInfoBox extends PureComponent {
         </span>
         <span>
           <span>Price</span>
-          <span className='amount'>{price}</span>
-          <span className='token'>{token}</span>
+          <span className='amount'>{tokenPrice}</span>
+          <span className='token'>{tokenPriceUnitSymbol}</span>
         </span>
         <span>
           <span>Fee</span>
-          <span className='amount'>{fee}</span>
-          <span className='token'>{token}</span>
+          <span className='amount'>{transactionFee}</span>
+          <span className='token'>{tokenPriceUnitSymbol}</span>
         </span>
       </div>
     );

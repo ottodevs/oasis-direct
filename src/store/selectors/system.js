@@ -5,5 +5,6 @@ const state = s => s.get('system');
 const activeStep = createSelector(state, s => s.get('step'));
 
 export default {
+  state,
   activeStep
 }
