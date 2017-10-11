@@ -60,19 +60,19 @@ class TransactionSummaryBox extends PureComponent {
     } = this.props;
 
     return (
-      <div className={'TransactionSummaryBox'}>
-        <h4>{heading}</h4>
-        <div>
-          <span className='transaction-type'>
-            {TransactionSummaryBox.getTransactionTypeLabel(type)}
-          </span>
-          <span className='transaction-amount'>
-            {amount}
-            <span className='token'>{token}</span>
-          </span>
-          <span className='transaction-status'>
-            {TransactionSummaryBox.getTransactionStatusLabel(status)}
-            </span>
+      <div className="TransactionReceipt">
+        <div className="TransactionId">
+          <span>{heading}</span>
+        </div>
+        <div className="TransactionDetails">
+          <div className="TransactionAmount">
+            <span className="Label">{TransactionSummaryBox.getTransactionTypeLabel(type)}</span>
+            <span className="Value">{amount} {token}</span>
+          </div>
+          <div className="TransactionStatus">
+            <span className="Label">Status</span>
+            <span className="Value"> {TransactionSummaryBox.getTransactionStatusLabel(status)}</span>
+          </div>
         </div>
       </div>
     );

@@ -1,2 +1,24 @@
-.base {
+.TradeFinalizer {
+  .Heading {
+    margin-bottom: 24px;
+  }
+
+  .FooterContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .Slogan {
+    font-family: Montserrat, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.80);
+    letter-spacing: 1px;
+    line-height: 13px;
+
+    a {
+      color: #448AFF;
+      text-decoration: none;
+    }
+  }
 }

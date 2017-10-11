@@ -12,7 +12,7 @@ const propTypes = PropTypes && {
 const defaultProps = {};
 
 const NeedHelpBox = () => (
-  <div>
+  <div className="Footer Slogan">
     Need help? Contact us on <a href="http://chat.makerdao.com">chat.makerdao.com</a>
   </div>
 );
@@ -48,17 +48,17 @@ class TradeFinalizer extends PureComponent {
   }
   render() {
     return (
-      <div className={'TradeFinalizer'}>
-        <div>
+      <section className={'TradeFinalizer'}>
+        <div className="Heading">
           <h3>Finalize trade</h3>
         </div>
         <div>
           {this.transactions()}
         </div>
-        <div>
+        <div className="FooterContainer">
           <NeedHelpBox/>
         </div>
-      </div>
+      </section>
     );
   }
 }

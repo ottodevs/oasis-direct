@@ -1,20 +1,8 @@
 .TradeDetails {
   position: relative;
 
-  .TradeDetailsHeading {
-    text-align: center;
+  .Heading {
     margin-bottom: 48px;
-    color: rgba(73, 73, 74, 0.90);
-
-    h1, h2, h3, h4, h5, h6 {
-      -webkit-margin-before: 0;
-
-      font-family: 'Montserrat', sans-serif;
-      font-size: 16px;
-      font-weight: 500;
-
-      line-height: 1.25;
-    }
   }
 
   .TradeTokenSelector {
@@ -48,7 +36,7 @@
 
   .TradeDetailsInfoBox {
     margin: 16px 0;
-    border: 1px solid rgba(156,156,157,0.08);
+    border: 1px solid rgba(156, 156, 157, 0.08);
     height: 30px;
   }
 }

@@ -38,12 +38,12 @@ class TradeDetails extends PureComponent {
     } = this.props;
 
     return (
-      <div className={'TradeDetails'}>
+      <section className={'TradeDetails'}>
         <TokenPickerContainer/>
-        <section className="TradeDetailsHeading">
+        <div className="Heading">
           <h3>Choose which Assets to trade</h3>
-        </section>
-        <section>
+        </div>
+        <div>
           <form>
             <div>
               <div className='TradeTokenSelector'>
@@ -87,8 +87,8 @@ class TradeDetails extends PureComponent {
               />
             </div>
           </form>
-        </section>
-      </div>
+        </div>
+      </section>
     );
   }
 }

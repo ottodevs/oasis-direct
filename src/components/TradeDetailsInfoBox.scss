@@ -2,22 +2,4 @@
   display: flex;
   align-content: center;
   justify-content: space-evenly;
-
-  .Label {
-    font-family: Montserrat, sans-serif;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.92px;
-
-    color: rgba(73, 73, 74, 0.90);
-    opacity: 0.6;
-  }
-
-  .Value {
-    font-family: Montserrat, sans-serif;
-    font-size: 10px;
-    font-weight: 500;
-    color: rgba(73, 73, 74, 0.90);
-    letter-spacing: 1px;
-  }
 }
