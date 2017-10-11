@@ -8,6 +8,7 @@ import transactions from "./transactions";
 import network from './network';
 import params from './params';
 import tokenPicker from './tokenPicker';
+import tradeDetails from './tradeDetails';
 
 
 
@@ -17,6 +18,7 @@ export default combineReducers({
   'network':       network.reducer,
   'transactions':  transactions.reducer,
   'params':        params.reducer,
-  'tokenPicker':   tokenPicker.reducer
+  'tokenPicker':   tokenPicker.reducer,
+  'tradeDetails':   tradeDetails.reducer
 
 })
