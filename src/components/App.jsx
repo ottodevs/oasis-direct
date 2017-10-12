@@ -202,9 +202,9 @@ class App extends Component {
         }
         this.setUpAddress('otc');
         this.setUpAddress('tub');
-        this.setUpToken('weth');
-        this.setUpToken('mkr');
-        this.setUpToken('sai');
+        // this.setUpToken('weth');
+        // this.setUpToken('mkr');
+        // this.setUpToken('sai');
         // This is necessary to finish transactions that failed after signing
         this.setPendingTxInterval();
       });

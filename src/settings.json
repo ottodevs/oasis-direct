@@ -9,9 +9,9 @@
         "mkr": "0x4bb514a7f83fbb13c2b41448208e89fabbcfe2fb",
         "sai": "0x228bf3d5be3ee4b80718b89b68069b023c32131e"
       },
-      "proxyFactory": "0xe82f08b89f5269570fea634f87a848614afca1a1",
+      "proxyFactory": "0x8f71f4df694f0050b8727c67e584e2f1725029d6",
       "proxyContracts": {
-        "oasisSai": ""
+        "oasisSai": "0x846fd816cbf50f1fc71274f1490739eb47e125b9"
       },
       "fromBlock": 0
     },
