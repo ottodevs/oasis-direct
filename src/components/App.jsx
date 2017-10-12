@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import web3, { initWeb3 } from  '../web3';
 import ReactNotify from '../notify';
-import { etherscanTx } from '../helpers';
+import { etherscanTx, loadObject } from '../helpers';
 // import logo from '../makerdao.svg';
 import './App.css';
 import WizardWrapper from "../containers/Wizard";
@@ -173,10 +173,6 @@ class App extends Component {
   //   this.setState({ params });
   // }
 
-  loadObject = (abi, address) => {
-    return web3.eth.contract(abi).at(address);
-  }
-
   initContracts = () => {
     web3.reset(true);
     if (typeof this.pendingTxInterval !== 'undefined') clearInterval(this.pendingTxInterval);
@@ -185,7 +181,7 @@ class App extends Component {
       ...initialState
     }, () => {
       const addrs = settings.chain[this.state.network.network];
-      window.proxyFactoryObj = this.proxyFactoryObj = this.loadObject(dsproxyfactory.abi, addrs.proxyFactory);
+      window.proxyFactoryObj = this.proxyFactoryObj = loadObject(dsproxyfactory.abi, addrs.proxyFactory);
 
       const setUpPromises = [this.getProxyAddress()];
       Promise.all(setUpPromises).then((r) => {
@@ -196,7 +192,7 @@ class App extends Component {
             system.proxy = proxy;
             return { system };
           });
-          // window.proxyObj = this.proxyObj = this.loadObject(dsproxy.abi, proxy);
+          // window.proxyObj = this.proxyObj = loadObject(dsproxy.abi, proxy);
         } else {
           
         }
@@ -259,7 +255,7 @@ class App extends Component {
   //     tokens[token] = tok;
   //     return { tokens };
   //   }, () => {
-  //     window[`${token}Obj`] = this[`${token}Obj`] = this.loadObject(token === 'weth' ? dsethtoken.abi : dstoken.abi, this.state.tokens[token].address);
+  //     window[`${token}Obj`] = this[`${token}Obj`] = loadObject(token === 'weth' ? dsethtoken.abi : dstoken.abi, this.state.tokens[token].address);
   //     this.getDataFromToken(token);
   //     this.setFilterToken(token);
   //   });
