@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 
-import NoConnection from './NoConnection';
 import web3, { initWeb3 } from  '../web3';
 import ReactNotify from '../notify';
 import { WAD, toBytes32, addressToBytes32, fromRaytoWad, wmul, wdiv, etherscanTx } from '../helpers';
 // import logo from '../makerdao.svg';
 import './App.css';
-import SetAssets from './SetAssets';
-import SetDetailsBasic from './SetDetailsBasic';
-import TradeBasic from './TradeBasic';
 import WizardWrapper from "../containers/Wizard";
 import './Frame.scss'
 
@@ -27,6 +23,18 @@ const Frame = ({ children }) => (
     {children}
   </div>
 );
+
+const NoConnection = () => (
+    <div className="row">
+      <div className="">
+        <div className="">
+          <h4>No connection to Ethereum</h4>
+          <p>Please use Parity, Metamask or a local node at <strong>http://localhost:8545</strong></p>
+        </div>
+      </div>
+    </div>
+);
+
 
 class App extends Component {
   constructor(props, context) {
@@ -58,7 +66,7 @@ class App extends Component {
         amountBuy: 0,
       }
     };
-  }
+  };
 
   checkNetwork = () => {
     web3.version.getNode((error) => {
@@ -416,33 +424,6 @@ frame
                                   });
                                  }
                                });
-  }
-  //
-
-  renderMain = () => {
-    switch (this.state.system.step) {
-      case 1:
-        return (
-          <SetAssets
-            type={ this.state.system.type }
-            changeType={ this.changeType }
-            goToDetailsBasicStep={ this.goToDetailsBasicStep } />
-        );
-      case 2:
-        return (
-          <SetDetailsBasic
-            from={ this.state.system.from }
-            to={ this.state.system.to }
-            calculateBuyAmount={ this.calculateBuyAmount }
-            amountBuy = { this.state.system.amountBuy }
-          />
-        );
-      case 3:
-        return (
-          <TradeBasic />
-        );
-      default:
-    }
   }
 
   render() {

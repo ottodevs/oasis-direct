@@ -39,7 +39,7 @@ export class TokenPickerWrapper extends PureComponent {
   }
 }
 
-export function mapStateToProps(state, props) {
+export function mapStateToProps(state) {
   return {
     tokens: tokensSelectors.items(state),
     activeTokenControlName: tokenPickerSelectors.activeTokenControlName(state),

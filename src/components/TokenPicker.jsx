@@ -5,7 +5,13 @@ import Immutable from 'immutable';
 
 import './TokenPicker.scss';
 import TokenPickerItem from './TokenPickerItem';
-import CloseButton from './CloseButton';
+// import CloseButton from './CloseButton';
+
+
+
+const CloseButton = ({onClick}) => (
+    <span className='CloseButton' onClick={onClick}></span>
+);
 
 
 const propTypes = PropTypes && {
@@ -32,7 +38,6 @@ class TokenPicker extends PureComponent {
       onToggleOpen
     } = this.props;
 
-    console.log('dt', disabledTokens, disabledTokens.includes('SAI'));
     return tokens.map(
         token => (
             <TokenPickerItem

@@ -5,10 +5,16 @@ import './TradeDetails.scss';
 import TradeToken from '../components/TradeToken';
 import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
-import Button from './Button';
 import TokenPickerContainer from './../containers/TokenPicker'
 import TradeDetailsInfoWrapper from '../containers/TradeDetailsInfo';
 
+
+const Button  = ({disabled, type, text, onClick}) => (
+    <button
+        onClick={onClick} disabled={disabled}
+        className={'Button'} type={type||'button'}>{text}
+    </button>
+);
 
 const propTypes = PropTypes && {
   onBuyAmountChange: PropTypes.func.isRequired,
