@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import { PropTypes } from 'prop-types';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
-
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TradeDetails from "../components/TradeDetails";
@@ -9,9 +8,8 @@ import systemHandler from '../store/reducers/system';
 import transactionsSelectors from '../store/selectors/transactions';
 import tokenPickerHandler from '../store/reducers/tokenPicker';
 import tokensHandler from '../store/reducers/tokens';
-
+import tradeDetailsHandler from '../store/reducers/tradeDetails';
 import tokensSelectors from '../store/selectors/tokens';
-
 
 
 const propTypes = PropTypes && {
@@ -54,11 +52,13 @@ export function mapStateToProps(state) {
     depositTokenValue: tokensSelectors.depositTokenValue(state),
     buyTokenValue: tokensSelectors.buyTokenValue(state),
     depositTokenAmount: tokensSelectors.depositTokenAmount(state),
-    buyTokenAmount: tokensSelectors.buyTokenAmount(state),
+    buyTokenAmount: tokensSelectors.buyTokenAmount(state)
   };
 }
 export function mapDispatchToProps(dispatch) {
   const actions = {
+    FetchBuyTransactionData: tradeDetailsHandler.actions.FetchBuyTransactionData,
+    FetchSellTransactionData: tradeDetailsHandler.actions.FetchSellTransactionData,
     StartTransaction: systemHandler.actions.StartTransaction,
     BuyAmountChanged: tokensHandler.actions.BuyAmountChanged,
     DepositAmountChanged: tokensHandler.actions.DepositAmountChanged,

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import NoConnection from './NoConnection';
 import web3, { initWeb3 } from  '../web3';
 import ReactNotify from '../notify';
 import { etherscanTx } from '../helpers';
@@ -20,6 +19,18 @@ const Frame = ({ children }) => (
     {children}
   </div>
 );
+
+const NoConnection = () => (
+    <div className="row">
+      <div className="">
+        <div className="">
+          <h4>No connection to Ethereum</h4>
+          <p>Please use Parity, Metamask or a local node at <strong>http://localhost:8545</strong></p>
+        </div>
+      </div>
+    </div>
+);
+
 
 class App extends Component {
   constructor(props, context) {
@@ -51,7 +62,7 @@ class App extends Component {
         amountBuy: 0,
       }
     };
-  }
+  };
 
   checkNetwork = () => {
     web3.version.getNode((error) => {
@@ -411,7 +422,6 @@ frame
     //                              }
     //                            });
   }
-  //
 
   // renderMain = () => {
   //   switch (this.state.system.step) {

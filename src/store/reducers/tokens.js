@@ -1,5 +1,7 @@
 import {createAction, handleActions} from 'redux-actions';
 import Immutable from 'immutable';
+import BigNumber from 'bignumber.js';
+import tradeDetailsHandler from './tradeDetails';
 
 const TOKEN_SELECTED = 'TOKENS/TOKEN_SELECTED';
 const DEPOSIT_AMOUNT_CHANGED = 'TOKENS/DEPOSIT_AMOUNT_CHANGED';
@@ -10,15 +12,33 @@ const TokenSelected = createAction(
     (v) => v,
 );
 
-const DepositAmountChanged = createAction(
-    DEPOSIT_AMOUNT_CHANGED,
-    ({ target: { value } }) => parseFloat(value.replace(/\D+/g,'')),
-);
+function DepositAmountChanged({ target: { value }}, sellToken, receiveToken) {
+  return (dispatch) => {
+      dispatch({
+        type: DEPOSIT_AMOUNT_CHANGED,
+        payload: { value: parseFloat(value)}
+      });
+      dispatch(
+          tradeDetailsHandler.actions.FetchSellTransactionData(
+              sellToken, receiveToken, value
+          )
+      )
+  }
+}
 
-const BuyAmountChanged = createAction(
-    BUY_AMOUNT_CHANGED,
-    ({ target: { value } }) => parseFloat(value.replace(/\D+/g,'')),
-);
+function BuyAmountChanged({ target: { value } }, buyToken, receiveToken) {
+  return (dispatch) => {
+    dispatch({
+      type: BUY_AMOUNT_CHANGED,
+      payload: { value: parseFloat(value)}
+    });
+    dispatch(
+        tradeDetailsHandler.actions.FetchBuyTransactionData(
+            buyToken, receiveToken, value
+        )
+    )
+  }
+}
 
 const actions = {
   TokenSelected,
@@ -27,29 +47,50 @@ const actions = {
 };
 
 
-
 const reducer = handleActions(
     {
       [TokenSelected]: (
           state,
           { payload: {tokenSymbol, activeTokenControlName} }
-      ) => {
-        return state
-        .updateIn(
-            [activeTokenControlName, 'value'],
-            () => tokenSymbol
-        );
-      },
-      [DepositAmountChanged]: (state, {payload}) =>
-          state.updateIn(
-              ['deposit','amount'],
-              v => payload
-          ),
-      [BuyAmountChanged]: (state, {payload}) =>
-          state.updateIn(
-            ['buy','amount'],
-            v => payload
-      ),
+      ) =>
+        state
+          .updateIn(
+              [activeTokenControlName, 'value'],
+              () => tokenSymbol
+          )
+      ,
+      [DEPOSIT_AMOUNT_CHANGED]: (state, {payload: { value }}) =>
+          state
+            .updateIn( ['deposit','amount'], v => value)
+            .updateIn(['buy','amount'],
+                () => {
+                  const depositAmount = value;
+                  const tokenExchangeRate = state.get('tokenExchangeRate');
+                  if(depositAmount) {
+                    return new BigNumber(depositAmount)
+                    .div(tokenExchangeRate)
+                    .toFormat(5);
+                  }
+                }
+            )
+      ,
+      [BUY_AMOUNT_CHANGED]: (state, {payload: value}) =>
+          state
+          .updateIn(['buy','amount'], v => value)
+          .updateIn(['deposit','amount'],
+              () => {
+                const buyAmount = value;
+                const tokenExchangeRate = state.get('tokenExchangeRate');
+                if(buyAmount) {
+                  return new BigNumber(buyAmount)
+                  .mul(tokenExchangeRate)
+                  .toFormat(5);
+                }
+              }
+          )
+      ,
+      [tradeDetailsHandler.actions.FetchSellTransactionData]: (state)=> ({}),
+      [tradeDetailsHandler.actions.FetchBuyTransactionData]: (state)=> ({})
 
     },
 
@@ -64,17 +105,20 @@ const reducer = handleActions(
             { symbol: 'SAI', name: 'SAI' },
           ],
           deposit: {
-            amount: null,
+            amount: 0,
             disabled: [
                 'MKR', 'REP', 'GNT', 'DGX','SAI'
             ],
             value: 'ETH',
           },
           buy: {
-            amount: null,
+            amount: 0,
             disabled: ['ETH'],
             value: 'SAI',
           },
+          tokenExchangeRate:1.2,
+          tokenExchangeFee: 22,
+          tokenSymbol: 'ETH'
         },
     ));
 
