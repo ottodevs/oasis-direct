@@ -22,7 +22,7 @@ export class WizardWrapper extends PureComponent {
       case 1:
         return (<TradeDetailsWrapper/>);
       case 2:
-        return (<TradeFinalizerWrapper></TradeFinalizerWrapper>)
+        return (<TradeFinalizerWrapper/>)
 
       default: return null;
     }

@@ -3,24 +3,17 @@ import React, { Component } from 'react';
 import NoConnection from './NoConnection';
 import web3, { initWeb3 } from  '../web3';
 import ReactNotify from '../notify';
-import { WAD, toBytes32, addressToBytes32, fromRaytoWad, wmul, wdiv, etherscanTx } from '../helpers';
+import { etherscanTx } from '../helpers';
 // import logo from '../makerdao.svg';
 import './App.css';
-import SetAssets from './SetAssets';
-import SetDetailsBasic from './SetDetailsBasic';
-import TradeBasic from './TradeBasic';
 import WizardWrapper from "../containers/Wizard";
 import './Frame.scss'
 
 const settings = require('../settings');
-const dstoken = require('../abi/dstoken');
-const dsethtoken = require('../abi/dsethtoken');
-const dsvalue = require('../abi/dsvalue');
+// const dstoken = require('../abi/dstoken');
+// const dsethtoken = require('../abi/dsethtoken');
+// const dsvalue = require('../abi/dsvalue');
 const dsproxyfactory = require('../abi/dsproxyfactory');
-const dsproxy = require('../abi/dsproxy');
-const proxyActions = require('../proxyActions');
-
-
 
 const Frame = ({ children }) => (
   <div className='Frame'>
@@ -42,11 +35,11 @@ class App extends Component {
 
   getInitialState = () => {
     return {
-      tokens: {
-        weth: '',
-        mkr: '',
-        sai: ''
-      },
+      // tokens: {
+      //   weth: '',
+      //   mkr: '',
+      //   sai: ''
+      // },
       otc: '',
       tub: '',
       system: {
@@ -187,7 +180,12 @@ class App extends Component {
       Promise.all(setUpPromises).then((r) => {
         if (r[0].length > 0) {
           const proxy = r[0][r[0].length - 1].args.proxy;
-          window.proxyObj = this.proxyObj = this.loadObject(dsproxy.abi, proxy);
+          this.setState((prevState, props) => {
+            const system = {...prevState.system};
+            system.proxy = proxy;
+            return { system };
+          });
+          // window.proxyObj = this.proxyObj = this.loadObject(dsproxy.abi, proxy);
         } else {
           
         }
@@ -241,86 +239,82 @@ class App extends Component {
     });
   }
 
-  setUpToken = (token) => {
-    const addrs = settings.chain[this.state.network.network];
-    this.setState((prevState, props) => {
-      const tokens = {...prevState.tokens};
-      const tok = {...tokens[token]};
-      tok.address = addrs[token];
-      tokens[token] = tok;
-      return { tokens };
-    }, () => {
-      window[`${token}Obj`] = this[`${token}Obj`] = this.loadObject(token === 'weth' ? dsethtoken.abi : dstoken.abi, this.state.tokens[token].address);
-      this.getDataFromToken(token);
-      this.setFilterToken(token);
-    });
-  }
+  // setUpToken = (token) => {
+  //   const addrs = settings.chain[this.state.network.network];
+  //   this.setState((prevState, props) => {
+  //     const tokens = {...prevState.tokens};
+  //     const tok = {...tokens[token]};
+  //     tok.address = addrs[token];
+  //     tokens[token] = tok;
+  //     return { tokens };
+  //   }, () => {
+  //     window[`${token}Obj`] = this[`${token}Obj`] = this.loadObject(token === 'weth' ? dsethtoken.abi : dstoken.abi, this.state.tokens[token].address);
+  //     this.getDataFromToken(token);
+  //     this.setFilterToken(token);
+  //   });
+  // }
 
-  setFilterToken = (token) => {
-    const filters = ['Transfer'];
+  // setFilterToken = (token) => {
+  //   const filters = ['Transfer'];
 
-    if (token === 'gem') {
-      filters.push('Deposit');
-      filters.push('Withdrawal');
-    } else {
-      filters.push('Mint');
-      filters.push('Burn');
-      filters.push('Trust');
-    }
+  //   if (token === 'gem') {
+  //     filters.push('Deposit');
+  //     filters.push('Withdrawal');
+  //   } else {
+  //     filters.push('Mint');
+  //     filters.push('Burn');
+  //     filters.push('Trust');
+  //   }
 
-    for (let i = 0; i < filters.length; i++) {
-      const conditions = {};
-      if (this[`${token}Obj`][filters[i]]) {
-        this[`${token}Obj`][filters[i]](conditions, {}, (e, r) => {
-          if (!e) {
-            this.logTransactionConfirmed(r.transactionHash);
-            this.getDataFromToken(token);
-          }
-        });
-      }
-    }
-  }
+  //   for (let i = 0; i < filters.length; i++) {
+  //     const conditions = {};
+  //     if (this[`${token}Obj`][filters[i]]) {
+  //       this[`${token}Obj`][filters[i]](conditions, {}, (e, r) => {
+  //         if (!e) {
+  //           this.logTransactionConfirmed(r.transactionHash);
+  //           this.getDataFromToken(token);
+  //         }
+  //       });
+  //     }
+  //   }
+  // }
 
-  getDataFromToken = (token) => {
-    // this.getTotalSupply(token);
-    // this.getBalanceOf(token, this.state.profile.activeProfile, 'myBalance');
-  }
+  // getDataFromToken = (token) => {
+  //   this.getTotalSupply(token);
+  //   this.getBalanceOf(token, this.state.profile.activeProfile, 'myBalance');
+  // }
 
-  getTotalSupply = (name) => {
-    this[`${name}Obj`].totalSupply.call((e, r) => {
-      if (!e) {
-        this.setState((prevState, props) => {
-          const tokens = {...prevState.tokens};
-          const tok = {...tokens[name]};
-          tok.totalSupply = r;
-          tokens[name] = tok;
-          return { tokens };
-        }, () => {
-          if (name === 'sin') {
-            this.calculateSafetyAndDeficit();
-          }
-        });
-      }
-    })
-  }
+  // getTotalSupply = (name) => {
+  //   this[`${name}Obj`].totalSupply.call((e, r) => {
+  //     if (!e) {
+  //       this.setState((prevState, props) => {
+  //         const tokens = {...prevState.tokens};
+  //         const tok = {...tokens[name]};
+  //         tok.totalSupply = r;
+  //         tokens[name] = tok;
+  //         return { tokens };
+  //       }, () => {
+  //         if (name === 'sin') {
+  //           this.calculateSafetyAndDeficit();
+  //         }
+  //       });
+  //     }
+  //   })
+  // }
 
-  getBalanceOf = (name, address, field) => {
-    this[`${name}Obj`].balanceOf.call(address, (e, r) => {
-      if (!e) {
-        this.setState((prevState, props) => {
-          const tokens = {...prevState.tokens};
-          const tok = {...tokens[name]};
-          tok[field] = r;
-          tokens[name] = tok;
-          return { tokens };
-        });
-      }
-    })
-  }
-
-  methodSig = (method) => {
-    return web3.sha3(method).substring(0, 10)
-  }
+  // getBalanceOf = (name, address, field) => {
+  //   this[`${name}Obj`].balanceOf.call(address, (e, r) => {
+  //     if (!e) {
+  //       this.setState((prevState, props) => {
+  //         const tokens = {...prevState.tokens};
+  //         const tok = {...tokens[name]};
+  //         tok[field] = r;
+  //         tokens[name] = tok;
+  //         return { tokens };
+  //       });
+  //     }
+  //   })
+  // }
   //
 
   // Transactions
@@ -405,45 +399,45 @@ frame
   }
 
   calculateBuyAmount = (from, to, amount) => {
-    this.proxyObj.execute.call(proxyActions.trade,
-                               `${this.methodSig('sellAll(address,address,address,uint256)')}${addressToBytes32(this.state.otc.address, false)}${addressToBytes32(this.state.tokens[to].address, false)}${addressToBytes32(this.state.tokens[from].address, false)}${toBytes32(web3.toWei(amount), false)}`,
-                               (e, r) => {
-                                 if (!e) {
-                                  this.setState((prevState, props) => {
-                                    const system = { ...prevState.system };
-                                    system.amountBuy = web3.fromWei(web3.toBigNumber(r));
-                                    return { system };
-                                  });
-                                 }
-                               });
+    // this.proxyObj.execute.call(proxyActions.trade,
+    //                            `${this.methodSig('sellAll(address,address,address,uint256)')}${addressToBytes32(this.state.otc.address, false)}${addressToBytes32(this.state.tokens[to].address, false)}${addressToBytes32(this.state.tokens[from].address, false)}${toBytes32(web3.toWei(amount), false)}`,
+    //                            (e, r) => {
+    //                              if (!e) {
+    //                               this.setState((prevState, props) => {
+    //                                 const system = { ...prevState.system };
+    //                                 system.amountBuy = web3.fromWei(web3.toBigNumber(r));
+    //                                 return { system };
+    //                               });
+    //                              }
+    //                            });
   }
   //
 
-  renderMain = () => {
-    switch (this.state.system.step) {
-      case 1:
-        return (
-          <SetAssets
-            type={ this.state.system.type }
-            changeType={ this.changeType }
-            goToDetailsBasicStep={ this.goToDetailsBasicStep } />
-        );
-      case 2:
-        return (
-          <SetDetailsBasic
-            from={ this.state.system.from }
-            to={ this.state.system.to }
-            calculateBuyAmount={ this.calculateBuyAmount }
-            amountBuy = { this.state.system.amountBuy }
-          />
-        );
-      case 3:
-        return (
-          <TradeBasic />
-        );
-      default:
-    }
-  }
+  // renderMain = () => {
+  //   switch (this.state.system.step) {
+  //     case 1:
+  //       return (
+  //         <SetAssets
+  //           type={ this.state.system.type }
+  //           changeType={ this.changeType }
+  //           goToDetailsBasicStep={ this.goToDetailsBasicStep } />
+  //       );
+  //     case 2:
+  //       return (
+  //         <SetDetailsBasic
+  //           from={ this.state.system.from }
+  //           to={ this.state.system.to }
+  //           calculateBuyAmount={ this.calculateBuyAmount }
+  //           amountBuy = { this.state.system.amountBuy }
+  //         />
+  //       );
+  //     case 3:
+  //       return (
+  //         <TradeBasic />
+  //       );
+  //     default:
+  //   }
+  // }
 
   render() {
     return (
