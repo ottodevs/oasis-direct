@@ -6,7 +6,6 @@ import './TradeDetailsInfoBox.scss';
 import {formatNumber} from '../helpers';
 import tokenFormat from '../utils/tokenFormat';
 
-
 const propTypes = PropTypes && {
   transactionInfo: PropTypes.shape({
     market: PropTypes.string,
@@ -44,11 +43,11 @@ class TradeDetailsInfoBox extends PureComponent {
         </span>
         <span>
           <span className="Label">Price </span>
-          <span className='Value'>{tokenFormat(tokenPrice)} {tokenPriceUnitSymbol}</span>
+          <span className='Value'>{formatNumber(tokenPrice)} {tokenPriceUnitSymbol}</span>
         </span>
         <span>
           <span className="Label">Fee </span>
-          <span className='Value'>{tokenFormat(transactionFee)} ETH</span>
+          <span className='Value'>{transactionFee} ETH</span>
         </span>
       </div>
     );

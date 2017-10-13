@@ -7,6 +7,7 @@ import AmountInput from './AmountInput';
 import Pictogram from './Pictogram';
 import TokenPickerContainer from './../containers/TokenPicker'
 import TradeDetailsInfoWrapper from '../containers/TradeDetailsInfo';
+import {formatNumber} from '../helpers';
 
 
 const Button  = ({disabled, type, text, onClick}) => (
@@ -63,7 +64,7 @@ class TradeDetails extends PureComponent {
                 <AmountInput
                   appState={appState}
                   selectedTokens={selectedTokens}
-                  value={depositTokenAmount}
+                  value={depositTokenAmount !== 0 ? depositTokenAmount !== '0x' ? formatNumber(depositTokenAmount) : '' : ''}
                   onChange={onDepositAmountChange}
                   name="deposit"
                   placeHolder="Deposit Amount"
@@ -81,7 +82,7 @@ class TradeDetails extends PureComponent {
                 <AmountInput
                   appState={appState}
                   selectedTokens={selectedTokens}
-                  value={buyTokenAmount}
+                  value={buyTokenAmount !== 0 ? buyTokenAmount !== '0x' ? formatNumber(buyTokenAmount) : '' : ''}
                   onChange={onBuyAmountChange}
                   name="buy"
                   placeHolder="Receive Amount"
