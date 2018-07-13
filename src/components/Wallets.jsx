@@ -77,7 +77,8 @@ class Wallets extends React.Component {
     return <React.Fragment>
       {
         this.state.shouldDisplayAvailableClients
-          ? <section className="frame wallets">
+        ?
+          <section className="frame wallets">
             <div style={{position: "absolute", zIndex: 2, top: "18px"}} onClick={this.getToClientSelection}>
               <Circle><BackIcon/></Circle>
             </div>
@@ -112,7 +113,8 @@ class Wallets extends React.Component {
               </ul>
             </div>
           </section>
-          : <section className="frame wallets">
+        :
+          <section className="frame wallets">
             <div className="heading">
               <h2>Select Wallet Client</h2>
             </div>
@@ -138,7 +140,8 @@ class Wallets extends React.Component {
                                 ?
                                   <Spinner theme="button"/>
                                 :
-                                  "Continue"}
+                                  "Continue"
+                              }
                             </button>
                           </React.Fragment>
                         :
