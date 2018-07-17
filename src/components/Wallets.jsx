@@ -18,7 +18,6 @@ const logos = {
 }
 
 class Wallets extends React.Component {
-
   constructor() {
     super();
 
@@ -51,16 +50,16 @@ class Wallets extends React.Component {
     this.setState({shouldDisplayAvailableClients: false});
   }
 
-  logoFor = (provider) => {
+  logoFor = provider => {
     const logo = logos[provider].icon;
     if (logo) return logo;
-    return <EthereumIcon/>;
+    return <EthereumIcon />;
   };
 
-  grayScale = (Logo) => {
+  grayScale = Logo => {
     return class extends React.Component {
       render = () => (
-        <Grayscale><Logo/></Grayscale>
+        <Grayscale><Logo /></Grayscale>
       )
     }
   }
