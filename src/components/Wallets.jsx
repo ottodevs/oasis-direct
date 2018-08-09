@@ -20,6 +20,8 @@ const logos = {
   status: {icon: <StatusIcon/>, name: "Status"}
 }
 
+@inject("network")
+@observer
 class Wallets extends React.Component {
   constructor() {
     super();
@@ -174,4 +176,4 @@ class Wallets extends React.Component {
   }
 }
 
-export default inject("network")(observer(Wallets));
+export default Wallets;
